@@ -13,7 +13,7 @@
       </ul>
       <van-icon name="chat-o" size="22px" color="#282828" info="9" />
     </div>
-    <div class="ranking-main">
+    <b-scroll class="ranking-main">
       <div class="ranking-top">
         <div
           :class="[
@@ -53,7 +53,7 @@
         </li>
       </ul>
       <noData v-else></noData>
-    </div>
+    </b-scroll>
   </section>
 </template>
 
@@ -70,6 +70,48 @@ export default {
       rankNavIndex: 0,
       rankNavList: ["今日排行", "昨日", "累计", "收徒"],
       rankingList: [
+        {
+          name: "专属码农专属码农专属码农专属码农专属码农专属码农",
+          money: 588.88,
+          userAvait:
+            "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2562216169,2976611441&fm=27&gp=0.jpg"
+        },
+        {
+          name: "专属码农专属码农专属码农专属码农专属码农专属码农",
+          money: 588.88,
+          userAvait:
+            "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2562216169,2976611441&fm=27&gp=0.jpg"
+        },
+        {
+          name: "专属码农专属码农专属码农专属码农专属码农专属码农",
+          money: 588.88,
+          userAvait:
+            "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2562216169,2976611441&fm=27&gp=0.jpg"
+        },
+        {
+          name: "专属码农专属码农专属码农专属码农专属码农专属码农",
+          money: 588.88,
+          userAvait:
+            "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2562216169,2976611441&fm=27&gp=0.jpg"
+        },
+        {
+          name: "专属码农专属码农专属码农专属码农专属码农专属码农",
+          money: 588.88,
+          userAvait:
+            "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2562216169,2976611441&fm=27&gp=0.jpg"
+        },
+        {
+          name: "专属码农专属码农专属码农专属码农专属码农专属码农",
+          money: 588.88,
+          userAvait:
+            "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2562216169,2976611441&fm=27&gp=0.jpg"
+        },
+        {
+          name: "专属码农专属码农专属码农专属码农专属码农专属码农",
+          money: 588.88,
+          userAvait:
+            "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2562216169,2976611441&fm=27&gp=0.jpg"
+        },
         {
           name: "专属码农专属码农专属码农专属码农专属码农专属码农",
           money: 588.88,
@@ -150,7 +192,7 @@ export default {
     background-color: #ffffff;
     .nav-list {
       padding: 17px 0;
-      min-height: 63px;
+      height: 59px;
       box-sizing: border-box;
       flex: 1;
       margin-right: 10px;
@@ -160,7 +202,7 @@ export default {
         font-size: 14px;
         color: #b1b1b1;
         margin-right: 15px;
-        transition: all 0.08s linear;
+        transition: all 0.1s ease;
         &.on {
           font-size: 18px;
           color: #282828;
@@ -171,9 +213,7 @@ export default {
   }
   .ranking-main {
     flex: 1;
-    overflow-y: auto;
     background-color: #ffffff;
-    -webkit-overflow-scrolling: touch;
     .ranking-top {
       display: flex;
       justify-content: space-between;
@@ -186,7 +226,7 @@ export default {
           width: 79px;
           height: 79px;
           box-sizing: border-box;
-          box-shadow: 0px 10px 20px rgba(74, 158, 254, 0.35);
+          box-shadow: 0px 5px 10px rgba(74, 158, 254, 0.35);
           border-radius: 50%;
           padding: 3px;
           border: 2px solid #4a9efe;
@@ -196,6 +236,7 @@ export default {
             position: relative;
             font-size: 0;
             .item-number {
+              text-align: center;
               position: absolute;
               width: 100%;
               bottom: -4px;
@@ -234,7 +275,7 @@ export default {
           .item-avait-box {
             width: 94px;
             height: 94px;
-            box-shadow: 0px 10px 20px rgba(255, 125, 48, 0.5);
+            box-shadow: 0px 5px 10px rgba(255, 125, 48, 0.5);
             border: 2px solid #ff7d30;
             .item-number {
               background-color: #ff7d30;
@@ -251,7 +292,7 @@ export default {
           .item-avait-box {
             width: 79px;
             height: 79px;
-            box-shadow: 0px 10px 20px rgba(74, 158, 254, 0.35);
+            box-shadow: 0px 5px 10px rgba(74, 158, 254, 0.35);
             border: 2px solid #4a9efe;
             .item-number {
               background-color: #4a9efe;
@@ -267,7 +308,7 @@ export default {
           .item-avait-box {
             width: 79px;
             height: 79px;
-            box-shadow: 0px 10px 20px rgba(254, 171, 88, 0.35);
+            box-shadow: 0px 5px 10px rgba(254, 171, 88, 0.35);
             border: 2px solid #feab58;
             .item-number {
               background-color: #feab58;

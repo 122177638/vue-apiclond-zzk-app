@@ -1,62 +1,45 @@
 <template>
   <ul class="tabbar-list">
-    <router-link
+    <li
       v-for="(item, index) in tabList"
       :key="index"
-      :to="item.path"
-      :exact="
-        $route.path === getExactPath
-          ? false
-          : item.path !== getExactPath
-          ? false
-          : true
-      "
-      @click.native="tabActiveIndex = index"
-      tag="li"
-      class="tabbar-item"
+      @click="switchTab(item, index)"
+      :class="['tabbar-item', { active: tabActiveIndex === index }]"
     >
       <img
         :src="tabActiveIndex === index ? item.icon_press : item.icon"
         class="tabbar-icon"
+        v-if="item.icon"
       />
-      <h3 class="tabbar-name">
+      <h3 :class="item.icon ? 'tabbar-name' : 'iconShow'">
         {{ item.title }}
       </h3>
-    </router-link>
+    </li>
   </ul>
 </template>
 
 <script>
 export default {
+  props: {
+    tabList: {
+      /**
+       * @description: tabItem字段
+       * @param {title} 标题
+       * @param {path} 路由路径
+       * @param {icon} 图标
+       * @param {icon_press} 选中图片
+       * @Date: 2019-03-06 15:41:27
+       */
+      type: Array,
+      default() {
+        return [];
+      },
+      required: true
+    }
+  },
   data() {
     return {
-      tabActiveIndex: 0,
-      tabList: [
-        {
-          title: "首页",
-          path: "/",
-          icon: require("./home_gray.png"),
-          icon_press: require("./home.png")
-        },
-        {
-          title: "视频",
-          path: "/page02",
-          icon: require("./video_gray.png"),
-          icon_press: require("./video.png")
-        },
-        {
-          title: "排行",
-          path: "/page03",
-          icon: require("./rank_gray.png"),
-          icon_press: require("./rank.png")
-        },
-        {
-          title: "我的",
-          path: "/page04",
-          icon: require("./my_gray.png"),
-          icon_press: require("./my.png")
-        }
-      ]
+      tabActiveIndex: 0
     };
   },
   created() {
@@ -64,9 +47,12 @@ export default {
       item => item.path === this.$route.path
     );
   },
-  computed: {
-    getExactPath() {
-      return this.tabList && this.tabList[0].path;
+  methods: {
+    switchTab(item, idx) {
+      if (this.tabActiveIndex !== idx) {
+        this.tabActiveIndex = idx;
+        this.$router.push(item.path);
+      }
     }
   }
 };
@@ -82,6 +68,7 @@ export default {
     flex: 1;
     height: 50px;
     position: relative;
+    color: #333333;
     .tabbar-icon {
       width: 25px;
       position: absolute;
@@ -96,7 +83,11 @@ export default {
       line-height: 1.5;
       padding-top: 32px;
     }
-    &.router-link-active {
+    .iconShow {
+      line-height: 50px;
+      font-size: 16px;
+    }
+    &.active {
       color: #ff7d30;
     }
   }

@@ -1,11 +1,16 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "@/views/home/home.vue";
-import Page01 from "@/views/home/subviews/page01.vue";
-import Page02 from "@/views/home/subviews/page02.vue";
-import Page03 from "@/views/home/subviews/page03.vue";
-import Page04 from "@/views/home/subviews/page04.vue";
 
+// tarBar ----- 子页面
+import TabBarView from "@/views/tabBarView/tabBarView.vue";
+import Page01 from "@/views/tabBarView/subviews/page01.vue";
+import Page02 from "@/views/tabBarView/subviews/page02.vue";
+import Page03 from "@/views/tabBarView/subviews/page03.vue";
+import Page04 from "@/views/tabBarView/subviews/page04.vue";
+
+// 内嵌组件
+import HeadInfoDetails from "@/views/headInfoDetails/headInfoDetails.vue";
+// () => import(/* webpackChunkName: "about" */ "@/views/About.vue"),
 Vue.use(Router);
 
 const router = new Router({
@@ -21,7 +26,7 @@ const router = new Router({
     {
       path: "/",
       // name: "home",
-      component: Home,
+      component: TabBarView,
       children: [
         {
           path: "",
@@ -46,18 +51,12 @@ const router = new Router({
       ]
     },
     {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "@/views/About.vue"),
+      path: "/headInfoDetails",
+      name: "headInfoDetails",
+      component: HeadInfoDetails,
       meta: {
-        title: "大师详情",
-        tabHiiden: true,
-        isTransition: true,
-        keepAlive: false
+        title: "信息详情页",
+        isTransition: true
       }
     }
   ]

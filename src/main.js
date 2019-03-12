@@ -5,11 +5,19 @@ import store from "./store/store";
 import "./registerServiceWorker"; // pwa
 import "@/common/styles/base.css"; // 样式初始化
 import "@/common/js/rem.js"; // 引入rem自适应
+import "swiper/dist/css/swiper.css";
 import "../public/script/api.js"; // 引入apiCloud-api
 import * as method from "@/common/js/mixin.js"; // 引入全局方法
 import API from "@/server/apis.js"; // 引入api接口
 import VConsole from "vconsole";
 import Navigation from "vue-navigation";
+import { Lazyload } from "vant";
+import Bscroll from "@/components/Bscroll/Bscroll.vue";
+
+// 全局引入Bscroll组件
+Vue.component("b-scroll", Bscroll);
+// vant图片懒加载
+Vue.use(Lazyload);
 
 Vue.config.productionTip = false;
 // 全局引入公用方法，也可以在组件中单独引入，推荐在组件中单独引入。
@@ -22,21 +30,18 @@ Vue.use(Navigation, {
   moduleName: "navigation",
   keyName: "AS"
 });
-// 开启console调试(正式打包请注释)
-new VConsole();
-// 通过apiID判断是否为app
-if (window.api && window.api.appId === "A6006996353979") {
-  window.apiready = function() {
-    new Vue({
-      router,
-      store,
-      render: h => h(App)
-    }).$mount("#app");
-  };
-} else {
-  new Vue({
-    router,
-    store,
-    render: h => h(App)
-  }).$mount("#app");
-}
+
+// window.apiready = function() {
+//   new VConsole();
+//   new Vue({
+//     router,
+//     store,
+//     render: h => h(App)
+//   }).$mount("#app");
+//   console.log(window.api);
+// };
+new Vue({
+  router,
+  store,
+  render: h => h(App)
+}).$mount("#app");
