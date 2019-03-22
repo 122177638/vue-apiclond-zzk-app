@@ -1,39 +1,53 @@
 <template>
   <section class="myInfo_container">
     <Header></Header>
-    <van-pull-refresh
-      class="myInfo_content"
-      v-model="isLoading"
-      @refresh="onRefresh"
-    >
-      <p style="padding:20px" v-for="(item, index) in 40" :key="index">
-        刷新次数: {{ count + index }}
-      </p>
-    </van-pull-refresh>
+    <scroll-view-vant
+      :VisLoading.sync="isLoading"
+      :VisRefresh.sync="isRefresh"
+      :VisFinished.sync="isFinished"
+      :VisError.sync="isError"
+      @onRefresh="onRefresh"
+      @onLoad="onLoad"
+    ></scroll-view-vant>
   </section>
 </template>
 
 <script>
-import { PullRefresh } from "vant";
 import Header from "@/components/header/header.vue";
+import scrollViewVant from "@/components/scroll-view-vant/scroll-view-vant.vue";
+
 export default {
   components: {
     Header,
-    [PullRefresh.name]: PullRefresh
+    scrollViewVant
   },
   data() {
     return {
       isLoading: false,
+      isRefresh: false,
+      isFinished: false,
+      isError: false,
       count: 0
     };
   },
   methods: {
     onRefresh() {
       setTimeout(() => {
-        this.$toast("刷新成功");
-        this.isLoading = false;
-        this.count++;
+        this.isRefresh = false;
       }, 500);
+    },
+    onLoad() {
+      console.log(65465465);
+
+      setTimeout(() => {
+        // 加载状态结束
+        this.isLoading = false;
+        this.isFinished = true;
+        // 数据全部加载完成
+        // if (this.list.length >= 40) {
+        //   this.isFinished = true;
+        // }
+      }, 1000);
     }
   }
 };
@@ -45,16 +59,5 @@ export default {
   flex-direction: column;
   height: 100%;
   width: 100%;
-  .myInfo_content {
-    flex: 1;
-    width: 100%;
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;
-    &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-      color: transparent;
-    }
-  }
 }
 </style>
