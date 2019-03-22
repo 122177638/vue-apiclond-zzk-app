@@ -5,7 +5,7 @@ import store from "./store/store";
 import "./registerServiceWorker"; // pwa
 import "@/common/styles/base.css"; // 样式初始化
 import "@/common/js/rem.js"; // 引入rem自适应
-import "swiper/dist/css/swiper.css";
+import "swiper/dist/css/swiper.min.css"; // 引入swiper.css
 import "../public/script/api.js"; // 引入apiCloud-api
 import * as method from "@/common/js/mixin.js"; // 引入全局方法
 import API from "@/server/apis.js"; // 引入api接口

@@ -1,26 +1,16 @@
 <template>
-  <div class="main-sss">
-    <van-nav-bar style="padding-top:20px;" title="我的" />
-    <b-scroll>
-      <div>
-        我的
-      </div>
-    </b-scroll>
-  </div>
+  <MyInfo></MyInfo>
 </template>
 
 <script>
-import { NavBar, Icon } from "vant";
+import MyInfo from "@/views/myInfo/myInfo.vue";
 export default {
+  name: "page04",
   components: {
-    [NavBar.name]: NavBar,
-    [Icon.name]: Icon
+    MyInfo
   }
 };
 </script>
 
 <style>
-.main-sss {
-  height: 100%;
-}
 </style>

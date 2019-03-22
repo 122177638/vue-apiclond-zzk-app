@@ -1,18 +1,19 @@
 <template>
   <section class="ranking-container">
-    <div class="ranking-header">
-      <ul class="nav-list">
-        <li
-          :class="['nav-item', { on: rankNavIndex === index }]"
-          v-for="(item, index) of rankNavList"
-          :key="index"
-          @click="rankNavIndex = index"
-        >
-          {{ item }}
-        </li>
-      </ul>
-      <van-icon name="chat-o" size="22px" color="#282828" info="9" />
-    </div>
+    <Header>
+      <template slot="left">
+        <ul class="nav-list">
+          <li
+            :class="['nav-item', { on: rankNavIndex === index }]"
+            v-for="(item, index) of rankNavList"
+            :key="index"
+            @click="rankNavIndex = index"
+          >
+            {{ item }}
+          </li>
+        </ul>
+      </template>
+    </Header>
     <b-scroll class="ranking-main">
       <div class="ranking-top">
         <div
@@ -59,11 +60,13 @@
 
 <script>
 import { Icon } from "vant";
+import Header from "@/components/header/header.vue";
 import noData from "@/components/noData/noData.vue";
 export default {
   components: {
     [Icon.name]: Icon,
-    noData
+    noData,
+    Header
   },
   data() {
     return {
@@ -179,38 +182,31 @@ export default {
   white-space: nowrap;
   overflow: hidden;
 }
+.nav-list {
+  box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  .nav-item {
+    font-size: 14px;
+    color: #b1b1b1;
+    margin-right: 15px;
+    transition: all 0.1s ease;
+    &:nth-last-child(1) {
+      margin-right: 0;
+    }
+    &.on {
+      font-size: 18px;
+      color: #282828;
+      font-weight: bold;
+    }
+  }
+}
 .ranking-container {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  .ranking-header {
-    padding: 20px 15px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-    .nav-list {
-      padding: 17px 0;
-      height: 59px;
-      box-sizing: border-box;
-      flex: 1;
-      margin-right: 10px;
-      display: flex;
-      align-items: flex-end;
-      .nav-item {
-        font-size: 14px;
-        color: #b1b1b1;
-        margin-right: 15px;
-        transition: all 0.1s ease;
-        &.on {
-          font-size: 18px;
-          color: #282828;
-          font-weight: bold;
-        }
-      }
-    }
-  }
   .ranking-main {
     flex: 1;
     background-color: #ffffff;

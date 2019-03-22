@@ -1,12 +1,3 @@
-<!--
- * @Description: swiper实现多页menus组件，已有插槽可有更多拓展，只有一页时会锁定swiper，默认宫格形导航。导航请使用selectChange自定义事件
- * @Author: Anles
- * @Motto: A madman with dreams
- * @Github: https://github.com/122177638
- * @LastEditors: Anles
- * @Date: 2019-03-06 20:55:19
- * @LastEditTime: 2019-03-07 15:49:05
- -->
 <template>
   <section class="navlist-container">
     <div class="swiper-container navlist-swiper-container" ref="navSwiper">
@@ -46,7 +37,7 @@
 </template>
 
 <script>
-import Swiper from "swiper";
+import Swiper from "swiper/dist/js/swiper.js";
 export default {
   props: {
     // 分割数量
@@ -75,6 +66,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
+      // eslint-disable-next-line
       new Swiper(this.$refs.navSwiper, {
         centeredSlides: true,
         pagination: {

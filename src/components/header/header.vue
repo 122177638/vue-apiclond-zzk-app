@@ -1,8 +1,8 @@
 <template>
   <header class="public_header">
     <van-nav-bar :border="false">
-      <slot name="left">
-        <div class="nav-left" slot="left">
+      <slot name="left" slot="left">
+        <div class="nav-left">
           <figure>
             <img
               src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=83479406,3830298088&fm=27&gp=0.jpg"
@@ -12,13 +12,9 @@
           <h3 class="user-name">千城墨白</h3>
         </div>
       </slot>
-      <van-icon
-        name="chat-o"
-        slot="right"
-        size="22px"
-        color="#282828"
-        info="9"
-      />
+      <slot name="right" slot="right">
+        <van-icon name="chat-o" size="22px" color="#282828" info="9" />
+      </slot>
     </van-nav-bar>
   </header>
 </template>

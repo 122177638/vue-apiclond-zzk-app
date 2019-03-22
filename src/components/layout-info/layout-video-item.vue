@@ -2,7 +2,7 @@
   <!-- 内部分化为后续迭代做准备 -->
   <div class="video-item">
     <!-- model ---  一张大图 -->
-    <div class="video-model-01" v-if="item.type == 0">
+    <div class="video-model-01" v-if="item.type == 1">
       <div class="video-img-box">
         <figure>
           <img class="video-img" v-lazy="item.img" />
@@ -11,7 +11,10 @@
             <h4 class="video-title">
               {{ item.title }}
             </h4>
-            <span class="video-time">11:35</span>
+            <div class="video-sub-box">
+              <p class="video-share-num"><span>19365次分享</span></p>
+              <p class="video-time"><span>11:35</span></p>
+            </div>
           </div>
           <!-- <span class="tag" v-if="item.isTag">{{ item.isTag }}</span> -->
         </figure>
@@ -65,6 +68,10 @@ export default {
     item: {
       type: Object,
       required: true
+    },
+    isShowShare: {
+      type: Boolean,
+      default: true
     }
   }
 };
@@ -74,10 +81,10 @@ export default {
 .video-item {
   padding: 15px 0;
   background-color: #ffffff;
+  overflow: hidden;
   border-bottom: 1px solid #f6f8fa;
   .video-model-01 {
     .video-img-box {
-      margin-top: 10px;
       position: relative;
       overflow: hidden;
       .video-mask {
@@ -122,15 +129,28 @@ export default {
           white-space: nowrap;
           overflow: hidden;
         }
-        .video-time {
-          padding: 3px 8px;
-          font-size: 14px;
-          color: #ffffff;
-          background-color: rgba(0, 0, 0, 0.5);
-          border-radius: 5px;
+        .video-sub-box {
           position: absolute;
+          width: 100%;
+          left: 0;
+          padding: 0 15px;
+          box-sizing: border-box;
           bottom: 15px;
-          right: 15px;
+          right: 0;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .video-time {
+            padding: 3px 8px;
+            font-size: 14px;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+          }
+          .video-share-num {
+            font-size: 14px;
+            color: #ffffff;
+          }
         }
       }
       .video-img {
@@ -244,15 +264,28 @@ export default {
           white-space: nowrap;
           overflow: hidden;
         }
-        .video-time {
-          padding: 3px 8px;
-          font-size: 14px;
-          color: #ffffff;
-          background-color: rgba(0, 0, 0, 0.5);
-          border-radius: 5px;
+        .video-sub-box {
           position: absolute;
+          width: 100%;
+          left: 0;
+          padding: 0 15px;
+          box-sizing: border-box;
           bottom: 15px;
-          right: 15px;
+          right: 0;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .video-time {
+            padding: 3px 8px;
+            font-size: 14px;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+          }
+          .video-share-num {
+            font-size: 14px;
+            color: #ffffff;
+          }
         }
       }
       .video-img {

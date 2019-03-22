@@ -19,12 +19,8 @@ export default {
     };
   },
   created() {
-    // 遍历路由设置keepAlive
-    router.options.routes.map(item => {
-      if (item.meta && item.meta.keepAlive) {
-        this.keepAlive.push(item.name);
-      }
-    });
+    // 递归路由设置KeepAlive  ***** 注意路由name必须和组件内的name一致 *****
+    this.setRouteKeepAlive(router.options.routes);
     // 记录路由,动态给定动画
     this.$navigation.on("forward", to => {
       this.transitionName = to.route.meta.isTransition ? "slide-left" : "";
@@ -38,9 +34,20 @@ export default {
     });
   },
   mounted() {
-    this.$SERVER.getData({ typeid: 1 }).then(data => {
-      console.log(data);
-    });
+    console.log(this.keepAlive);
+  },
+  methods: {
+    setRouteKeepAlive(routes) {
+      routes.map(item => {
+        if (item.children) {
+          this.setRouteKeepAlive(item.children);
+        } else {
+          if (item.meta && item.meta.keepAlive) {
+            this.keepAlive.push(item.name);
+          }
+        }
+      });
+    }
   }
 };
 </script>

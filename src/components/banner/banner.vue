@@ -13,13 +13,14 @@
 </template>
 
 <script>
-import Swiper from "swiper";
+import Swiper from "swiper/dist/js/swiper.js";
 export default {
   data() {
     return {};
   },
   mounted() {
     this.$nextTick(() => {
+      // eslint-disable-next-line
       new Swiper(this.$refs.bannerSwiper, {
         effect: "coverflow",
         grabCursor: true,

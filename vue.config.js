@@ -21,7 +21,7 @@ if (scriptActive === "watch-build") {
 }
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "" : "./",
+  publicPath: process.env.NODE_ENV === "production" ? "./" : "./",
   outputDir: appname, // 运行时生成的生产环境构建文件的目录(默认""dist""，构建之前会被清除)
   assetsDir: "public", //放置生成的静态资源(s、css、img、fonts)的(相对于 outputDir 的)目录(默认"")
   indexPath: "index.html", //指定生成的 index.html 的输出路径(相对于 outputDir)也可以是一个绝对路径。
@@ -47,7 +47,9 @@ module.exports = {
     modules: false // 启用 CSS modules for all css / pre-processor files.
   },
   // webpack配置
-  chainWebpack: () => {},
+  chainWebpack: config => {
+    config.entry("index").add("@babel/polyfill"); // 添加babel-poiyfill
+  },
   configureWebpack: config => {
     config.plugins = config.plugins.concat([
       // 删除build时旧的文件
@@ -111,6 +113,7 @@ module.exports = {
     // }
     // }
   },
+  transpileDependencies: ["swiper", "dom7", "ssr-window"],
   // 第三方插件配置
   pluginOptions: {}
 };

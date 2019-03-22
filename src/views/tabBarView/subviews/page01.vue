@@ -5,6 +5,7 @@
 <script>
 import Home from "@/views/home/home.vue";
 export default {
+  name: "page01",
   components: {
     Home
   }

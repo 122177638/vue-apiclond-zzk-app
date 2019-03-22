@@ -168,7 +168,7 @@ export default {
             {
               type: 2,
               title:
-                " 嫦娥四号登陆月球表面，登陆的技术和经验，是否会和外国分享。",
+                "嫦娥四号登陆月球表面，登陆的技术和经验，是否会和外国分享。",
               img:
                 "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552023559132&di=c0a718bd96a13cdd872bcd0521a11e0a&imgtype=0&src=http%3A%2F%2Fimg.8794.cn%2F2017%2F0816%2F20170816032114400.png",
               isTag: "高佣金",
@@ -180,7 +180,7 @@ export default {
             {
               type: 2,
               title:
-                " 嫦娥四号登陆月球表面，登陆的技术和经验，是否会和外国分享。",
+                "嫦娥四号登陆月球表面，登陆的技术和经验，是否会和外国分享。",
               img:
                 "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3987050592,1188857939&fm=26&gp=0.jpg",
               shareTag: [
@@ -197,7 +197,7 @@ export default {
           type: "video",
           content: [
             {
-              type: 0,
+              type: 1,
               title:
                 " 嫦娥四号登陆月球表面，登陆的技术和经验，是否会和外国分享。",
               img:
@@ -298,7 +298,7 @@ export default {
         if (this._isDestroyed) {
           return;
         }
-        if (Math.random() > 0.5) {
+        if (false) {
           // 如果有新数据
           // this.questData();
         } else {

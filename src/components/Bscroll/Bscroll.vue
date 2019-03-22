@@ -344,9 +344,9 @@ export default {
         })
       } else if (this.pullUpLoad && this.isPullUpLoad) {
         this.isPullUpLoad = false
-        this.scroll.finishPullUp()
         this.pullUpDirty = dirty
-        this.refresh()
+        this.scroll.finishPullUp()
+        this.pullUpDirty && this.refresh()
       } else {
         this.refresh();
       }
@@ -425,6 +425,7 @@ export default {
   },
   watch: {
     data() {
+      console.log('watch')
       setTimeout(() => {
         this.forceUpdate(true)
       }, this.refreshDelay)
@@ -449,6 +450,7 @@ export default {
   position: relative;
   height: 100%;
   overflow: hidden;
+  flex: 1;
   // background: #fff;
   /*position: absolute*/
   /*left: 0*/
