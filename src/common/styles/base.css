@@ -244,6 +244,6 @@ body {
 }
 
 /* 去除移动端300ms延迟*/
-html {
+/* html {
    touch-action: manipulation;
-}
+} */

@@ -8,6 +8,7 @@
       alt=""
       v-show="index === imgIndex"
     />
+    <p class="loading-point" v-if="isTip">加载中...</p>
   </div>
 </template>
 
@@ -17,6 +18,10 @@ export default {
     isloading: {
       type: Boolean,
       default: true
+    },
+    isTip: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -55,10 +60,18 @@ export default {
 <style lang="less" scoped>
 .logoLoading-box {
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .loading-img {
     width: 26px;
     height: 26px;
-    vertical-align: middle;
+    display: block;
+  }
+  .loading-point {
+    font-size: 14px;
+    color: #b1b1b1;
+    margin-left: 5px;
   }
 }
 </style>

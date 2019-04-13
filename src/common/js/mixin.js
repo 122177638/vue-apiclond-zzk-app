@@ -1,35 +1,32 @@
 /* eslint-disable */
 /**
- * 开启接触touchmove默认事件
- * @param {Element} el
+ * @description: px与rem互转,默认750尺寸。
+ * @param {String} rpx (15px || 0.3rem)
+ * @param {Boolean} type (true) 是否返回单位字符，默认返回
+ * @param {Number} designWidth (750) 设计稿尺寸
+ * @param {Number} maxWidth (750) 最大尺寸
+ * @return: 转换后的参数，
+ * @Date: 2019-04-13 11:44:17
  */
-export const openScroll = function (el) {
-  el.addEventListener(
-    "touchstart",
-    function () {
-      var top = el.scrollTop;
-      var totalScroll = el.scrollHeight;
-      var currentScroll = top + el.offsetHeight;
-      if (top === 0) {
-        el.scrollTop = 1;
-      } else if (currentScroll === totalScroll) {
-        el.scrollTop = top - 1;
-      }
-    }, {
-      passive: true
-    }
-  );
-  el.addEventListener(
-    "touchmove",
-    function (evt) {
-      if (el.offsetHeight < el.scrollHeight) {
-        evt._isScroller = true;
-      }
-    }, {
-      passive: true
-    }
-  );
-};
+export const conversionUnit = function (rpx, type, designWidth, maxWidth) {
+  let width = document.documentElement.getBoundingClientRect().width;
+  maxWidth = maxWidth || 750;
+  designWidth = designWidth || 750;
+  width > maxWidth && (width = maxWidth);
+  // 当前html，rem值
+  let rem = (width * 100) / designWidth;
+  // 匹配对应参数
+  let matchReg = rpx.match(/([0-9.]+)([a-z]+)/i);
+  let result;
+  if (matchReg[2].toLowerCase() === "rem") {
+    result = !type ? (matchReg[1] * rem) + 'rem' : (matchReg[1] * rem);
+  } else if (matchReg[2].toLowerCase() === "px") {
+    result = !type ? (matchReg[1] / rem) + 'px' : (matchReg[1] / rem);
+  } else {
+    result = rpx;
+  }
+  return result;
+}
 /**
  *
  * @param {Number} len uuid长度

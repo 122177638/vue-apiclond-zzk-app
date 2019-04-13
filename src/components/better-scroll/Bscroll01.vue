@@ -201,7 +201,6 @@ export default {
       pullUpDirty: true,
       pullDownStyle: '',
       bubbleY: 0,
-      isTransition: true,
       dots: [],
       currentPageIndex: 0
     }
@@ -218,8 +217,6 @@ export default {
   },
   created() {
     // ios系统不启用useTransition 解决ios停止抖动问题
-    let isIOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-    if (isIOS) this.isTransition = false;
     this.pullDownInitTop = -50
   },
   mounted() {
@@ -338,15 +335,16 @@ export default {
     },
     forceUpdate(dirty) {
       if (this.pullDownRefresh && this.isPullingDown) {
-        this.isPullingDown = false
+        this.pullUpDirty = true;
+        this.isPullingDown = false;
         this._reboundPullDown().then(() => {
           this._afterPullDown()
         })
       } else if (this.pullUpLoad && this.isPullUpLoad) {
-        this.isPullUpLoad = false
-        this.pullUpDirty = dirty
+        this.isPullUpLoad = false;
+        this.pullUpDirty = dirty;
         this.scroll.finishPullUp()
-        this.pullUpDirty && this.refresh()
+        this.refresh();
       } else {
         this.refresh();
       }
@@ -425,7 +423,6 @@ export default {
   },
   watch: {
     data() {
-      console.log('watch')
       setTimeout(() => {
         this.forceUpdate(true)
       }, this.refreshDelay)

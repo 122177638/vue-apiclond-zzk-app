@@ -1,23 +1,23 @@
 <template>
   <section class="home-container">
     <Header></Header>
-    <b-scroll
+    <Better-scroll
       class="home-main"
       ref="scroll"
-      :pullDownRefresh="{ threshold: 50, stop: 50, txt: '刷新成功' }"
+      :pullDownRefresh="{ threshold: 50, stop: 40, txt: '刷新成功' }"
       :pullUpLoad="{
         threshold: 50,
-        txt: { more: '下拉加载更多', noMore: '暂无更多数据' }
+        txt: { more: '上拉加载更多', noMore: '暂无更多数据' }
       }"
       @pullingDown="onPullingDown"
       @pullingUp="onPullingUp"
     >
       <Banner></Banner>
-      <MenusGrid
+      <Swiper-grid
         :data="navlistArr"
         :slice="8"
         @selectChange="navigationTo"
-      ></MenusGrid>
+      ></Swiper-grid>
       <!-- 头条推送 -->
       <section class="socketInfo-container">
         <div class="socketInfo-wrap">
@@ -91,14 +91,14 @@
           ></Layout-goods-item>
         </template>
       </section>
-    </b-scroll>
+    </Better-scroll>
   </section>
 </template>
 
 <script>
 import Header from "@/components/header/header.vue";
 import Banner from "@/components/banner/banner.vue";
-import MenusGrid from "@/components/menusGrid/menusGrid.vue";
+import SwiperGrid from "@/components/swiperGrid/swiperGrid.vue";
 import Marquee from "@/components/marquee/marquee.vue";
 import MarqueeItem from "@/components/marquee/marquee-item.vue";
 import LayoutArticleItem from "@/components/layout-info/layout-article-item.vue";
@@ -109,7 +109,7 @@ export default {
   components: {
     Header,
     Banner,
-    MenusGrid,
+    SwiperGrid,
     Marquee,
     MarqueeItem,
     LayoutPublicTitle,
@@ -120,7 +120,11 @@ export default {
   data() {
     return {
       navlistArr: [
-        { title: "分享赚", icon: require("@/assets/Share_iCon.png") },
+        {
+          title: "分享赚",
+          icon: require("@/assets/Share_iCon.png"),
+          path: "/profitShare"
+        },
         { title: "分享赚", icon: require("@/assets/Share_iCon.png") },
         { title: "分享赚", icon: require("@/assets/Share_iCon.png") },
         { title: "分享赚", icon: require("@/assets/Share_iCon.png") },
@@ -315,6 +319,7 @@ export default {
      * @Date: 2019-03-07 10:36:54
      */
     navigationTo(item) {
+      this.$router.push(item.path);
       console.log(item);
     },
     /**
@@ -324,7 +329,10 @@ export default {
      * @Date: 2019-03-11 10:43:28
      */
     handleNavToDetailes(item) {
-      this.$router.push("/headInfoDetails");
+      this.$router.push("/profitShareDetails");
+      console.log('====================================');
+      console.log(item);
+      console.log('====================================');
     }
   }
 };

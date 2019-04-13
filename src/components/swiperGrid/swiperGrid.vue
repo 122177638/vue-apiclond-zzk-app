@@ -56,27 +56,35 @@ export default {
       required: true
     }
   },
-  data() {
-    return {};
-  },
   computed: {
     navlist() {
       return this.sliceNavList(this.slice, this.data) || [];
     }
   },
+  watch: {
+    // 监听变化，重新初始化swiper
+    navlist() {
+      this.mySwiper.destroy(false, true);
+      this.swiperInit();
+    }
+  },
   mounted() {
-    this.$nextTick(() => {
-      // eslint-disable-next-line
-      new Swiper(this.$refs.navSwiper, {
-        centeredSlides: true,
-        pagination: {
-          el: this.$refs.navSwiper_pagination,
-          clickable: true
-        }
-      });
-    });
+    this.swiperInit();
   },
   methods: {
+    // 初始化swiper
+    swiperInit() {
+      this.$nextTick(() => {
+        // eslint-disable-next-line
+        this.mySwiper = new Swiper(this.$refs.navSwiper, {
+          centeredSlides: true,
+          pagination: {
+            el: this.$refs.navSwiper_pagination,
+            clickable: true
+          }
+        });
+      });
+    },
     //分割
     sliceNavList(slideNum, totalArray) {
       let spliceNum = Math.ceil(totalArray.length / slideNum);

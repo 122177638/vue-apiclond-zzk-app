@@ -8,7 +8,7 @@
       </h4>
       <div class="article-img-box">
         <figure>
-          <img class="article-img" v-lazy="item.img" />
+          <img class="article-img" :src="item.img" />
           <span class="tag" v-if="item.isTag">{{ item.isTag }}</span>
         </figure>
       </div>
@@ -22,6 +22,10 @@
             {{ item.name }}￥{{ item.money.toFixed(2) }}
           </li>
         </ul>
+        <div class="article-share-count" v-if="isShowShare">
+          <i class="article-share-icon"></i>
+          <span class="article-share-num">1326548次</span>
+        </div>
       </div>
     </div>
     <!-- model ---  多张图片 -->
@@ -31,7 +35,7 @@
       </h4>
       <div class="article-img-box">
         <figure v-for="(item, index) in item.img" :key="index">
-          <img class="article-img" v-lazy="item" />
+          <img class="article-img" :src="item" />
         </figure>
       </div>
       <div class="article-footer">
@@ -66,7 +70,7 @@
       </div>
       <div class="model-right">
         <figure>
-          <img class="article-img" v-lazy="item.img" />
+          <img class="article-img" :src="item.img" />
           <span class="tag" v-if="item.isTag">{{ item.isTag }}</span>
         </figure>
       </div>
@@ -80,6 +84,10 @@ export default {
     item: {
       type: Object,
       required: true
+    },
+    isShowShare: {
+      type: Boolean,
+      default: true
     }
   }
 };
@@ -90,6 +98,7 @@ export default {
   padding: 15px 0;
   background-color: #ffffff;
   border-bottom: 1px solid #f6f8fa;
+  // 一张大图
   .article-model-01 {
     .article-title {
       font-size: 16px;
@@ -107,7 +116,11 @@ export default {
     }
     .article-footer {
       margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       .article-share-price {
+        flex: 1;
         display: flex;
         flex-wrap: nowrap;
         .article-share-type {
@@ -129,8 +142,25 @@ export default {
           }
         }
       }
+      .article-share-count {
+        .article-share-icon {
+          width: 18px;
+          height: 14px;
+          background: url("../../assets/img/forward.png") no-repeat;
+          background-size: 100% 100%;
+          display: inline-block;
+          vertical-align: middle;
+        }
+        .article-share-num {
+          font-size: 12px;
+          color: #b1b1b1;
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
     }
   }
+  // 三张图片
   .article-model-02 {
     .article-title {
       font-size: 16px;
@@ -178,10 +208,12 @@ export default {
       }
     }
   }
+  // left && right
   .article-model-03 {
     display: flex;
     align-items: center;
     .model-left {
+      flex: 1;
       .article-title {
         color: #282828;
         font-size: 16px;

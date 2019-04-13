@@ -23,11 +23,13 @@
     <van-list
       v-model="isLoading"
       :finished="isFinished"
+      :error.sync="isError"
+      error-text="请求失败，点击重新加载"
       finished-text="没有更多了"
       @load="onLoad"
     >
       <slot>
-        <p style="padding:20px" v-for="(item, index) in 40" :key="index">
+        <p style="padding:20px" v-for="(item, index) in 5" :key="index">
           刷新次数: {{ count + index }}
         </p>
       </slot>
@@ -40,6 +42,11 @@ import { List, PullRefresh } from "vant";
 import LogoLoading from "@/components/logoLoading/logoLoading.vue";
 
 export default {
+  components: {
+    "van-pull-refresh": PullRefresh,
+    "van-list": List,
+    LogoLoading
+  },
   props: {
     // 是否刷新成功
     VisRefresh: {
@@ -57,7 +64,7 @@ export default {
       default: false
     },
     // 是否加载错误
-    Verror: {
+    VisError: {
       type: Boolean,
       default: false
     }
@@ -96,11 +103,6 @@ export default {
       }
     }
   },
-  components: {
-    [PullRefresh.name]: PullRefresh,
-    [List.name]: List,
-    LogoLoading
-  },
   data() {
     return {
       count: 0
@@ -119,18 +121,23 @@ export default {
 </script>
 
 <style lang="less" scoped>
+::-webkit-scrollbar {
+  // display: none;
+  width: 0;
+  height: 0;
+  color: transparent;
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  display: none !important;
+}
 .scroll-view-container {
   flex: 1;
   height: 100%;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  // &::-webkit-scrollbar {
-  //   width: 0;
-  //   height: 0;
-  //   color: transparent;
-  //   background-color: transparent;
-  // }
+
   .loading-point {
     font-size: 13px;
     color: #989898;

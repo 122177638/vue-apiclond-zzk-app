@@ -3,7 +3,7 @@
     <li
       v-for="(item, index) in tabList"
       :key="index"
-      @click="switchTab(item, index)"
+      @touchend="switchTab(item, index)"
       :class="['tabbar-item', { active: tabActiveIndex === index }]"
     >
       <img
@@ -69,6 +69,7 @@ export default {
     height: 50px;
     position: relative;
     color: #333333;
+    cursor: pointer;
     .tabbar-icon {
       width: 25px;
       position: absolute;

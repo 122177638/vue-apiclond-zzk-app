@@ -21,7 +21,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       // eslint-disable-next-line
-      new Swiper(this.$refs.bannerSwiper, {
+      var mySwiper = new Swiper(this.$refs.bannerSwiper, {
         effect: "coverflow",
         grabCursor: true,
         centeredSlides: true,

@@ -1,6 +1,6 @@
 <template>
   <header class="public_header">
-    <van-nav-bar :border="false">
+    <van-nav-bar :border="border">
       <slot name="left" slot="left">
         <div class="nav-left">
           <figure>
@@ -12,8 +12,15 @@
           <h3 class="user-name">千城墨白</h3>
         </div>
       </slot>
+      <slot name="title" slot="title"></slot>
       <slot name="right" slot="right">
-        <van-icon name="chat-o" size="22px" color="#282828" info="9" />
+        <van-icon
+          name="chat-o"
+          size="0.44rem"
+          @click="$router.push('/msgCenter')"
+          color="#282828"
+          info="9"
+        />
       </slot>
     </van-nav-bar>
   </header>
@@ -22,16 +29,22 @@
 <script>
 import { NavBar, Icon } from "vant";
 export default {
+  props: {
+    border: {
+      type: Boolean,
+      default: false
+    }
+  },
   components: {
-    [NavBar.name]: NavBar,
-    [Icon.name]: Icon
+    "van-nav-bar": NavBar,
+    "van-icon": Icon
   }
 };
 </script>
 
 <style lang="less" scoped>
 .public_header {
-  height: 79px;
+  // height: 79px;
   padding-top: 20px;
   background-color: #ffffff;
   box-sizing: border-box;

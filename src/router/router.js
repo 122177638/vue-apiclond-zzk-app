@@ -13,13 +13,7 @@ const Page03 = () =>
 const Page04 = () =>
   import(/* webpackChunkName: "page04" */ "@/views/tabBarView/subviews/page04.vue");
 
-// import Page01 from "@/views/tabBarView/subviews/page01.vue";
-// import Page02 from "@/views/tabBarView/subviews/page02.vue";
-// import Page03 from "@/views/tabBarView/subviews/page03.vue";
-// import Page04 from "@/views/tabBarView/subviews/page04.vue";
-
 // 内嵌组件
-import HeadInfoDetails from "@/views/headInfoDetails/headInfoDetails.vue";
 
 Vue.use(Router);
 
@@ -72,15 +66,104 @@ const router = new Router({
       ]
     },
     {
-      path: "/headInfoDetails",
-      name: "headInfoDetails",
-      component: HeadInfoDetails,
+      path: "/profitShare",
+      name: "profitShare",
+      component: () =>
+        import(/* webpackChunkName: "profitShare" */ "@/views/profitShare/profitShare.vue"),
       meta: {
-        title: "信息详情页",
+        title: "分享赚",
         isTransition: true,
         keepAlive: true
       }
-    }
+    },
+    {
+      path: "/profitShareDetails",
+      name: "profitShareDetails",
+      component: () =>
+        import(/* webpackChunkName: "profitShareDetails" */ "@/views/profitShare/profitShareDetails.vue"),
+      meta: {
+        title: "文章详情",
+        isTransition: true,
+        keepAlive: true
+      }
+    },
+    {
+      path: "/videosDetails",
+      name: "videosDetails",
+      component: () =>
+        import(/* webpackChunkName: "videosDetails" */ "@/views/videos/videosDetails.vue"),
+      meta: {
+        title: "视频详情",
+        isTransition: true,
+        keepAlive: true
+      }
+    },
+    {
+      path: "/shareRule",
+      name: "shareRule",
+      component: () =>
+        import(/* webpackChunkName: "profitShare" */ "@/views/shareRule/shareRule.vue"),
+      meta: {
+        title: "分享规则",
+        isTransition: true,
+        keepAlive: true
+      }
+    },
+    {
+      path: "/systemSetup",
+      name: "systemSetup",
+      component: () =>
+        import(/* webpackChunkName: "systemSetup" */ "@/views/systemSetup/systemSetup.vue"),
+      meta: {
+        title: "系统设置",
+        isTransition: true,
+        keepAlive: true
+      }
+    },
+    {
+      path: "/msgCenter",
+      name: "msgCenter",
+      component: () =>
+        import(/* webpackChunkName: "msgCenter" */ "@/views/msgCenter/msgCenter.vue"),
+      meta: {
+        title: "消息中心",
+        isTransition: true,
+        keepAlive: true
+      }
+    },
+    {
+      path: "/msgCenterDetails/:typeId",
+      name: "msgCenterDetails",
+      component: () =>
+        import(/* webpackChunkName: "msgCenterDetails" */ "@/views/msgCenter/msgCenterDetails.vue"),
+      meta: {
+        title: "消息中心详情",
+        isTransition: true,
+        keepAlive: true
+      }
+    },
+    {
+      path: "/myWallet",
+      name: "myWallet",
+      component: () =>
+        import(/* webpackChunkName: "myWallet" */ "@/views/myWallet/myWallet.vue"),
+      meta: {
+        title: "我的钱包",
+        isTransition: true,
+        keepAlive: true
+      }
+    },
+    {
+      path: "/myGang",
+      name: "myGang",
+      component: () =>
+        import(/* webpackChunkName: "myGang" */ "@/views/myGang/myGang.vue"),
+      meta: {
+        title: "我的团队",
+        isTransition: true,
+        keepAlive: true
+      }
+    },
   ]
 });
 

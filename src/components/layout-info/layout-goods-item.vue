@@ -3,7 +3,7 @@
     <div class="item-box">
       <div class="item-left">
         <figure>
-          <img class="goods-img" alt="" v-lazy="item.img" />
+          <img class="goods-img" alt="" :src="item.img" />
         </figure>
       </div>
       <div class="item-right">

@@ -5,7 +5,7 @@
     <div class="video-model-01" v-if="item.type == 1">
       <div class="video-img-box">
         <figure>
-          <img class="video-img" v-lazy="item.img" />
+          <img class="video-img" :src="item.img" />
           <div class="video-mask">
             <div class="video-start"></div>
             <h4 class="video-title">
@@ -51,7 +51,7 @@
       </div>
       <div class="model-right">
         <figure>
-          <img v-lazy="item.img" class="video-img" />
+          <img :src="item.img" class="video-img" />
           <div class="video-mask">
             <div class="video-start"></div>
           </div>
@@ -98,21 +98,26 @@ export default {
         .video-start {
           width: 64px;
           height: 64px;
+          background-color: rgba(115, 133, 159, 0.5);
           border-radius: 50%;
-          background-color: rgba(0, 0, 0, 0.5);
+          border: 4px solid #ffffff;
+          box-sizing: border-box;
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
           &::after {
-            content: "";
-            border: 16px solid transparent;
-            border-left-color: #ffffff;
+            content: "\F101";
+            font-size: 40px;
+            color: #ffffff;
+            text-align: center;
+            font-family: VideoJS;
+            font-weight: normal;
+            font-style: normal;
             position: absolute;
             top: 50%;
-            left: 68%;
+            left: 50%;
             transform: translate(-50%, -50%);
-            border-radius: 5px;
           }
         }
         .video-title {
@@ -190,6 +195,7 @@ export default {
     display: flex;
     align-items: center;
     .model-left {
+      flex: 1;
       .video-title {
         color: #282828;
         font-size: 16px;
@@ -234,20 +240,25 @@ export default {
           width: 29px;
           height: 29px;
           border-radius: 50%;
-          background-color: rgba(0, 0, 0, 0.5);
+          background-color: rgba(115, 133, 159, 0.5);
+          border: 2px solid #ffffff;
+          box-sizing: border-box;
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
           &::after {
-            content: "";
-            border: 8px solid transparent;
-            border-left-color: #ffffff;
+            content: "\F101";
+            font-size: 20px;
+            color: #ffffff;
+            text-align: center;
+            font-family: VideoJS;
+            font-weight: normal;
+            font-style: normal;
             position: absolute;
             top: 50%;
-            left: 68%;
+            left: 50%;
             transform: translate(-50%, -50%);
-            border-radius: 5px;
           }
         }
         .video-title {

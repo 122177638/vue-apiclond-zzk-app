@@ -1,6 +1,6 @@
 <template>
-  <div class="home-container">
-    <main class="home-main">
+  <div class="view-container">
+    <main class="view-main">
       <router-view />
     </main>
     <footer>
@@ -14,7 +14,6 @@
 import Tabbar from "@/components/tabbar/tabbar.vue";
 
 export default {
-  name: "home",
   components: {
     Tabbar
   },
@@ -52,17 +51,19 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.home-container {
+.view-container {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-.home-main {
+.view-main {
   flex: 1;
   overflow: hidden;
-  // overflow-y: scroll;
-  // -webkit-overflow-scrolling: touch;
-  // scroll-behavior: smooth;
+  // 兼容安卓低版本浏览器
+  height: calc(100% - 51px);
+}
+footer {
+  flex-shrink: 0;
 }
 </style>

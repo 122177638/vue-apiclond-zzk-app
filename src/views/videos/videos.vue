@@ -1,19 +1,20 @@
 <template>
   <section class="video-container">
     <Header></Header>
-    <b-scroll
+    <Better-scroll
       class="video-main"
       ref="scroll"
-      :pullDownRefresh="{ threshold: 50, stop: 50, txt: '刷新成功' }"
+      :pullDownRefresh="{ threshold: 50, stop: 40, txt: '刷新成功' }"
       :pullUpLoad="{
         threshold: 50,
-        txt: { more: '下拉加载更多', noMore: '暂无更多数据' }
+        txt: { more: '上拉加载更多', noMore: '暂无更多数据' }
       }"
       @pullingDown="onPullingDown"
       @pullingUp="onPullingUp"
     >
       <div class="video-list">
         <Layout-video-item
+          @click.native="navToVideoDetails(item)"
           :item="item"
           :style="index === 0 ? 'padding:0 0 15px' : 'padding:15px 0'"
           :key="index"
@@ -21,7 +22,7 @@
           v-for="(item, index) in content"
         ></Layout-video-item>
       </div>
-    </b-scroll>
+    </Better-scroll>
   </section>
 </template>
 
@@ -67,11 +68,51 @@ export default {
             { name: "游客", money: 15.0 },
             { name: "会员", money: 15.0 }
           ]
+        },
+        {
+          type: 1,
+          title: "不懂中国筷子的历史？我可以教你啊",
+          img:
+            "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3987050592,1188857939&fm=26&gp=0.jpg",
+          shareTag: [
+            { name: "游客", money: 15.0 },
+            { name: "会员", money: 15.0 }
+          ]
+        },
+        {
+          type: 1,
+          title: "不懂中国筷子的历史？我可以教你啊",
+          img:
+            "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3987050592,1188857939&fm=26&gp=0.jpg",
+          shareTag: [
+            { name: "游客", money: 15.0 },
+            { name: "会员", money: 15.0 }
+          ]
+        },
+        {
+          type: 1,
+          title: "不懂中国筷子的历史？我可以教你啊",
+          img:
+            "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3987050592,1188857939&fm=26&gp=0.jpg",
+          shareTag: [
+            { name: "游客", money: 15.0 },
+            { name: "会员", money: 15.0 }
+          ]
         }
       ]
     };
   },
   methods: {
+    /**
+     * @description: 前往视频详情
+     * @param {Object} item 列表子项
+     * @return: undefined
+     * @Date: 2019-03-29 11:10:08
+     */
+    navToVideoDetails(item) {
+      console.log(item);
+      this.$router.push("/videosDetails");
+    },
     onPullingDown() {
       // 模拟更新数据
       console.log("pulling down and load data");
@@ -113,9 +154,9 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
+  overflow: hidden;
   flex-direction: column;
   .video-main {
-    flex: 1;
     .video-list {
       padding: 0 15px;
       background-color: #ffffff;

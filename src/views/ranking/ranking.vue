@@ -14,7 +14,7 @@
         </ul>
       </template>
     </Header>
-    <b-scroll class="ranking-main">
+    <Better-scroll class="ranking-main">
       <div class="ranking-top">
         <div
           :class="[
@@ -54,7 +54,7 @@
         </li>
       </ul>
       <noData v-else></noData>
-    </b-scroll>
+    </Better-scroll>
   </section>
 </template>
 
